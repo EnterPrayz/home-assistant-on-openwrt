@@ -88,28 +88,6 @@ if [ $? -eq 0 ]; then
     fi
 fi
 
-if [ $pipreq -ne 1 ]; then
-    try=0
-    while true
-    do
-        try=$((try+1))
-        if [ $try -le 5 ]; then
-            echo -e "\033[33m Download and install pip...... try $try. \033[0m"
-            curl https://bootstrap.pypa.io/get-pip.py > get-pip.py && python3 get-pip.py
-            if [ $? -ne 0 ]; then
-                rm ./get-pip.py
-                continue
-            else
-                break
-            fi
-        else
-            echo -e "\033[31m ERROR! Install pip failed,  exit. \033[0m"
-            exit 0
-        fi
-    done
-    rm ./get-pip.py
-fi
-
 #Set pip install configuration to no-cache-dir
 pip3 config set install.no-cache-dir on
 
